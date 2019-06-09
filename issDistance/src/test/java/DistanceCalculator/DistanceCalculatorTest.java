@@ -38,6 +38,11 @@ public class DistanceCalculatorTest {
 	
 	@Test
 	public void test_GetAngleABC() {
-		assertEquals(126.8698, distanceCalc.getAngleABC(5000, 6000), 0.00001);
+		assertEquals(126.8698, distanceCalc.getAngleABC(5000, 6000), 0.00000000000000000001);
+	}
+	
+	@Test
+	public void testGetDistanceABAdjAngle() {
+		assertEquals(5.3, distanceCalc.getDistanceAToIss(5, 7, 49), 0.00000000000000000001);
 	}
 }

@@ -71,4 +71,14 @@ public class DistanceCalculator {
 		
 		return angle;
 	}
+	
+	public double getDistanceAToIss(double lengthAB, double lengthAC, double oppositeAngle) {
+		double distance = 0;
+		
+		double angleRad = Math.toRadians(oppositeAngle);
+		
+		distance = Math.sqrt((Math.pow(lengthAB, 2) + Math.pow(lengthAC, 2) - (2 * lengthAB * lengthAC) * Math.cos(angleRad)));
+		
+		return distance;
+	}
 }
