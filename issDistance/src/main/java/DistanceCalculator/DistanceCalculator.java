@@ -16,11 +16,26 @@ public class DistanceCalculator {
 	// Everything in km
 	private double issAltitude = 408;
 	private double earthRadius = 6371;
+	
+	//Hong Kong coordinates <- google search
+	private double hkLat = 22.3193;
+	private double hkLong = 114.1694;
 
 	public DistanceCalculator(ApiCaller api) {
 		this.apiCaller = api;
 	}
+	
+	//All in one func
+	public double doCalculations() throws IOException {
+		setUpIssCoord();
+		double abDist = getDistanceBetweenTwoCoords(hkLat, hkLong, issLatitude, issLongitude);
+		double angleABC = getAngleABC(abDist, earthRadius);
+		double distanceToISS = getDistanceAToIss(abDist, issAltitude, angleABC);
+		
+		return distanceToISS;
+	}
 
+	//Using open notify api
 	public void setUpIssCoord() throws IOException {
 		JSONObject obj = apiCaller.getJsonFromUrl("http://api.open-notify.org/iss-now.json");
 		JSONObject latLong = obj.getJSONObject("iss_position");

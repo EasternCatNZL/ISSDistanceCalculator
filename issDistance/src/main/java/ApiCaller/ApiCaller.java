@@ -30,10 +30,7 @@ public class ApiCaller {
 		
 		JSONObject obj = new JSONObject(response.toString());
 		JSONObject jArray = obj.getJSONObject("iss_position");
-		
-		System.out.println(jArray.getDouble("latitude"));
 
-		
 		return obj;
 	}
 }
