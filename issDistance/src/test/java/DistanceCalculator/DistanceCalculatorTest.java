@@ -35,5 +35,9 @@ public class DistanceCalculatorTest {
 		
 		assertEquals(5574.84045684855, distanceCalc.getDistanceBetweenTwoCoords(benLat, benLong, libLat, libLong), 0.00000000001);
 	}
-
+	
+	@Test
+	public void test_GetAngleABC() {
+		assertEquals(126.8698, distanceCalc.getAngleABC(5000, 6000), 0.00001);
+	}
 }

@@ -48,4 +48,27 @@ public class DistanceCalculator {
 
 		return distance;
 	}
+	
+	//Angle ABC where a - start point, b - point ISS hovering over, c - point ISS exists
+	public double getAngleABC(double lengthAB, double lengthBC) {
+		double angle = 0;
+		
+		//get angle from point to center of earth treated like isosceles triangle <- ignoring altitude
+		
+		//dummy data till pulling from api
+		//double lengthAB = getDistanceBetweenTwoCoords(51.5007, 0.1246, issLatitude, issLongitude);
+		
+		double angleABCore = Math.acos((Math.pow(lengthAB, 2) + Math.pow(lengthBC, 2) - Math.pow(lengthAB, 2)) / (2 * lengthAB * lengthBC));
+		double angleABCoreDegrees = Math.toDegrees(angleABCore);
+		
+		//ensure 0 < angle < 180
+		if(angleABCoreDegrees > 180) {
+			angleABCoreDegrees -= 180;
+		}
+		
+		//angle opposite on line AB against line core to iss
+		angle = 180 - angleABCoreDegrees;
+		
+		return angle;
+	}
 }
